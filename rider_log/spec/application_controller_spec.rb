@@ -5,9 +5,40 @@ def app
 end
 
 describe ApplicationController do
-  it "responds with a welcome message" do
+
+describe "Homepage" do
+  it 'loads the homepage' do
     get '/'
     expect(last_response.status).to eq(200)
-    expect(last_response.body).to include("Welcome to the Sinatra Template!")
+    expect(last_response.body).to include("Welcome Riders!")
   end
 end
+
+describe "signup page" do 
+
+  it "lods the signup page" do 
+    get '/signup'
+    expect(last_response.status).to eq(200)
+  end 
+
+    it 'does not let a user sign up without a username' do 
+      params = {
+        :username => '',
+        :password => "testword1"
+      }
+      post '/signup', params 
+      expect(last_response.location).to include('/signup')
+    end
+
+    it 'does not let a user sign up without a password' do 
+      params = {
+        :username => "rider1"
+        :password => ""
+      }
+      post '/signup', params 
+      expect(last_response.location).to include('/signup')
+    end
+end 
+
+
+
