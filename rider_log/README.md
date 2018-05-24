@@ -1,18 +1,9 @@
-I am creatng a web app for logging motorcyle rides per user.
+Welcome to my Rider Log web app 
 
-it will have a signup/login 
+with this web app you will be able to signup/login and create/view your posts on rides, as well as edit or delete them as you see fit. 
 
-a user will be able to create a new log, and store info such as destination, mileage, time elapsed, and a text box for info for things such as construction or maybe a flag text box in case they wish to travel there again, possibly in the future add in a google maps box? 
+you can clone this from https://github.com/ritchey0713/sinatra_project/tree/master/rider_log
 
-after logging in be able to see a list of all the users destinations, link them to individual views of each destination 
+after cloning and opening install gem shotgun and run shotgun in terminal and go to your local host to use it! 
 
-able to edit info in destinations 
-
-also be able to delete a destination if needed
-
-lock down info so only the user can edit/delete their own posts 
-
-messaging for bad passwords? look this up 
-
-
-
+Happy riding!
