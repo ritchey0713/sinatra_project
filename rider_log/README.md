@@ -1,1 +1,18 @@
+I am creatng a web app for logging motorcyle rides per user.
+
+it will have a signup/login 
+
+a user will be able to create a new log, and store info such as destination, mileage, time elapsed, and a text box for info for things such as construction or maybe a flag text box in case they wish to travel there again, possibly in the future add in a google maps box? 
+
+after logging in be able to see a list of all the users destinations, link them to individual views of each destination 
+
+able to edit info in destinations 
+
+also be able to delete a destination if needed
+
+lock down info so only the user can edit/delete their own posts 
+
+messaging for bad passwords? look this up 
+
+
 
