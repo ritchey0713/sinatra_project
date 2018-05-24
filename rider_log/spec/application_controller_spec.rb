@@ -38,6 +38,19 @@ describe "signup page" do
       post '/signup', params 
       expect(last_response.location).to include('/signup')
     end
+
+    it 'does not let a logged in user view the signup page' do
+      rider = Rider.create(:username => "rider1", :password => "testword1")
+      params = {
+        :username => "rider1",
+        :password => "testword1"
+      }
+      post '/signup', params
+      session = {}
+      session[:user_id] = user.id
+      get '/signup'
+      expect(last_response.location).to include('/destinations')
+    end
 end 
 
 
