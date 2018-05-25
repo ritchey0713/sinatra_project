@@ -1,6 +1,6 @@
 class CreateDestinations < ActiveRecord::Migration
   def change
-    create_table :destinations |destination|
+    create_table :destinations do |destination|
     destination.string :name 
     destination.integer :distance 
     destination.integer :motorcycle_id

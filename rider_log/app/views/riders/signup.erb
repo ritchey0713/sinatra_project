@@ -1,3 +1,13 @@
-<p> this is the sign up page </p>
+<h1> Create a new account!</h1>
+<h2> <%= flash[:error] %>
+
+<form action='/signup' method='POST'>
+<label>User name:</label>
+<input type="text" name="username"></br>
+<label>Password:</label>
+<input type="password" name="password"></br>
+
+<input type="submit" value="Create a new account!">
+</form>
 
 

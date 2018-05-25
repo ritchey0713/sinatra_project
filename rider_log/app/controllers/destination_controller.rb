@@ -1,6 +1,11 @@
 class DestinationController < ApplicationController
 
   get '/destinations' do 
+    if logged_in?
+      @destinations = Destination.all 
+      erb :'/destinations/destinations'
+    else 
+      redirect '/login'
   end 
 
   get '/destinations/new' do 
