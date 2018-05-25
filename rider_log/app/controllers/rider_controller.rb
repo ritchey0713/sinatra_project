@@ -1,21 +1,26 @@
 class RiderController < ApplicationController 
        
   
-    get '/rider/:id'
+    get '/rider/:id' do 
     end 
 
-    get '/signup'
+    get '/signup' do 
+        if !logged_in 
+            erb :'rider/signup'
+        else 
+            redirect to '/destination/destinations'
+        end 
     end 
 
-    post '/signup'
+    post '/signup' do 
     end 
 
-    get '/login'
+    get '/login' do 
     end 
 
-    post '/login'
+    post '/login' do 
     end 
 
-    get '/logout'
+    get '/logout' do 
     end 
 end

@@ -1,4 +1,4 @@
-class Destination < ActiveRecord 
+class Destination < ApplicationController
 
   get '/destinations' do 
   end 
@@ -9,16 +9,16 @@ class Destination < ActiveRecord
   get '/destinations/:id/edit' do 
   end 
 
-  post '/destinations/:id'
+  post '/destinations/:id' do 
   end 
 
-  get '/destinations/:id'
+  get '/destinations/:id' do 
   end
   
   patch '/destinations/:id' do 
   end 
 
-  delete '/destinations/:id/delete'
+  delete '/destinations/:id/delete' do 
   end 
 
 

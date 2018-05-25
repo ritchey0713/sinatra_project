@@ -8,7 +8,27 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :'index'
   end
+  
 
-end
+
+
+
+  helpers do 
+    def current_rider 
+      Rider.find(session[:rider_id])
+    end 
+
+    def logged_in? 
+      !!current_rider
+    end 
+
+    def redirect_for_login
+      if !logged_in? 
+        redirect "/rider/login"
+      end 
+    end 
+  end 
+
+end 

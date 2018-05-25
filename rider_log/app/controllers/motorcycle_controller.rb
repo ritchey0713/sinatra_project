@@ -1,4 +1,4 @@
-class Motorcycle < ActiveRecord 
+class Motorcycle < ApplicationController
 
   get '/motorcycles' do 
   end 
@@ -9,16 +9,16 @@ class Motorcycle < ActiveRecord
   get '/motorcycles/:id/edit' do 
   end 
 
-  post '/motorcycles/:id'
+  post '/motorcycles/:id' do 
   end 
 
-  get '/motorcycles/:id'
+  get '/motorcycles/:id' do 
   end
   
   patch '/motorcycles/:id' do 
   end 
 
-  delete '/motorcycles/:id/delete'
+  delete '/motorcycles/:id/delete' do 
   end 
 
 
