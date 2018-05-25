@@ -23,19 +23,42 @@ class DestinationController < ApplicationController
         redirect '/destinations/new_destination'
       else 
         @destination = current_user.destinations.build(name: params[name])
-        if @destination.save 
-          
-      end 
+        @destination.save 
+        redirect "/destinations/#{@destination.id}"
+      end  
+    else 
+      redirect "/login"      
     end  
-  end 
- 
-  get '/destinations/:id/edit' do 
   end 
 
   get '/destinations/:id' do 
+    if logged_in? 
+      @destination = Destination.find_by(params[:id])
+      erb :"/destinations/show_destination"
+    else 
+      redirect "/login"
+    end 
   end
-  
+ 
+  get '/destinations/:id/edit' do 
+    if logged_in? 
+      @destination = Destination.find_by(params[:id])  
+      if @destination && @destination.rider == current_rider 
+        erb :"/destination/edit_destination"
+  end 
+
   patch '/destinations/:id' do 
+    @destination = Destination.find_by(params[:id])
+    if logged_in? 
+      if !params[:name] =="" && !params[:distance] =="" 
+        @destination.update(name: params[:name], distance: params[:distance])
+      else 
+        redirect "/destinations/#{@desination.id}/edit"
+      end 
+    else 
+      redirect "/login"
+    end 
+
   end 
 
   delete '/destinations/:id/delete' do 
