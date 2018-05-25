@@ -1,4 +1,4 @@
-class Destination < ApplicationController
+class DestinationController < ApplicationController
 
   get '/destinations' do 
   end 

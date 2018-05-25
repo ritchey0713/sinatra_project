@@ -5,10 +5,10 @@ class RiderController < ApplicationController
     end 
 
     get '/signup' do 
-        if !logged_in 
-            erb :'rider/signup'
+        if logged_in?
+            redirect "/destinations"
         else 
-            redirect to '/destination/destinations'
+            erb :"riders/signup"
         end 
     end 
 

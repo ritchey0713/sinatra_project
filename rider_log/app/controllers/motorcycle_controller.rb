@@ -1,4 +1,4 @@
-class Motorcycle < ApplicationController
+class MotorcycleController < ApplicationController
 
   get '/motorcycles' do 
   end 
