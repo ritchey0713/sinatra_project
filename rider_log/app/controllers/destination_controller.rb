@@ -16,7 +16,17 @@ class DestinationController < ApplicationController
     end 
   end 
 
-  post '/destinations' do 
+  post '/destinations' do
+    if logged_in?
+      if params[:name] == ""
+        flash[:error] = "Name cannot be blank!"
+        redirect '/destinations/new_destination'
+      else 
+        @destination = current_user.destinations.build(name: params[name])
+        if @destination.save 
+          
+      end 
+    end  
   end 
  
   get '/destinations/:id/edit' do 
