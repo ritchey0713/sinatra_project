@@ -19,7 +19,7 @@ class DestinationController < ApplicationController
   post '/destinations' do
     if logged_in?
       if params[:name] == ""
-        flash[:error] = "Name cannot be blank!"
+        flash[:message] = "Name cannot be blank!"
         redirect '/destinations/new_destination'
       else 
         @destination = current_user.destinations.build(name: params[name])
@@ -61,7 +61,14 @@ class DestinationController < ApplicationController
 
   end 
 
-  delete '/destinations/:id/delete' do 
+  delete '/destinations/:id/delete' do
+    if logged_in? 
+      @destination = Destination.find_by(params[:id])
+      @destination.delete 
+      redirect "/destinations"
+    else 
+      redirect "/login"
+    end  
   end 
 
 
