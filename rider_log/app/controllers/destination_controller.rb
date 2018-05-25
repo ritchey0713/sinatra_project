@@ -9,12 +9,17 @@ class DestinationController < ApplicationController
   end 
 
   get '/destinations/new' do 
+    if logged_in? 
+      erb :'/destinations/new_destination'
+    else 
+      redirect "/login"
+    end 
   end 
 
+  post '/destinations' do 
+  end 
+ 
   get '/destinations/:id/edit' do 
-  end 
-
-  post '/destinations/:id' do 
   end 
 
   get '/destinations/:id' do 

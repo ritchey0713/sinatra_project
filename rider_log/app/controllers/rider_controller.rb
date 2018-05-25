@@ -36,8 +36,21 @@ class RiderController < ApplicationController
     end 
 
     post '/login' do 
+        @rider = Rider.find_by(username: params[:username]
+            if @rider && @rider.authenticate(params[:password])
+                session[:rider_id] = @rider.:id
+                redirect '/destinations'
+            else 
+                redirect '/login'
+            end 
     end 
 
     get '/logout' do 
+        if logged_in?
+            session.destroy 
+            redirect '/login'
+        else 
+            redirect '/'
+        end 
     end 
 end
