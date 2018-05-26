@@ -51,11 +51,26 @@ class MotorcycleController < ApplicationController
   end 
   
   patch '/motorcycles/:id' do 
+    @motorcycle = Motorcycle.find_by(params[:id])
+    if logged_in? 
+      if !params[:name] == "" 
+        @motorcycle.update(name: params[:name])
+      else 
+        redirect "/motorcycles/#{@motorcycle.id}/edit"
+      end 
+    else 
+      redirect "/login"
+    end 
+
   end 
 
   delete '/motorcycles/:id/delete' do 
+    if logged_in? 
+      @motorcycle = Motorcycle.find_by(params[:id])
+      @motorcycle.delete 
+      redirect "/motorcycles"
+    else 
+      redirect "/login"
+    end  
   end 
-
-
-
 end 
