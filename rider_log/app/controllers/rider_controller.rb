@@ -19,7 +19,7 @@ class RiderController < ApplicationController
 
     post '/signup' do 
        if params[:name] && params[:password]
-        binding.pry
+        
         # @rider = Rider.create(username: params[:username], password: params[:password])
         @rider = Rider.create(params)
         session[:rider_id] = @rider.id

@@ -20,7 +20,7 @@ class DestinationController < ApplicationController
   post '/destinations' do
     if logged_in?
       if params[:name] == ""
-        flash[:message] = "Name cannot be blank!"
+        # flash[:message] = "Name cannot be blank!"
         redirect '/destinations/new_destination'
       else 
         @destination = current_user.destinations.build(name: params[name])
