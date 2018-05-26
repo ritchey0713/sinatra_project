@@ -6,6 +6,7 @@ class DestinationController < ApplicationController
       erb :'/destinations/destinations'
     else 
       redirect '/login'
+    end 
   end 
 
   get '/destinations/new' do 
@@ -45,6 +46,8 @@ class DestinationController < ApplicationController
       @destination = Destination.find_by(params[:id])  
       if @destination && @destination.rider == current_rider 
         erb :"/destination/edit_destination"
+      end 
+    end 
   end 
 
   patch '/destinations/:id' do 

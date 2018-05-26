@@ -2,6 +2,11 @@ class RiderController < ApplicationController
        
   
     get '/rider/:id' do 
+        if logged_in? 
+            @rider = Rider.find(params[:id])
+        else 
+            redirect "/login"
+        end 
     end 
 
     get '/signup' do 
@@ -13,17 +18,14 @@ class RiderController < ApplicationController
     end 
 
     post '/signup' do 
-        if params[:username] == ""
-            flash[:error] = "You must fill out a username!" 
-            redirect :'/signup'
-        elsif params[:password] = ""
-            flash[:error] = "You must fill out a password!"
-            redirect :'/signup'
-        else 
-            @rider = Rider.new(username: params[:username], password: params[:password])
-            @rider.save 
-            session[:rider_id] = @rider.:id
+       if params[:name] && params[:password]
+        binding.pry
+        # @rider = Rider.create(username: params[:username], password: params[:password])
+        @rider = Rider.create(params)
+        session[:rider_id] = @rider.id
             redirect '/destinations'
+       else 
+        redirect '/signup'
         end 
     end 
 
@@ -36,9 +38,9 @@ class RiderController < ApplicationController
     end 
 
     post '/login' do 
-        @rider = Rider.find_by(username: params[:username]
+        @rider = Rider.find_by(name: params[:name])
             if @rider && @rider.authenticate(params[:password])
-                session[:rider_id] = @rider.:id
+                session[:rider_id] = @rider.id
                 redirect '/destinations'
             else 
                 redirect '/login'
