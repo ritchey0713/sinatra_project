@@ -1,0 +1,8 @@
+<%= @motorcycles.name %>
+
+<h1>Destinations</h1>
+
+<% @motorcycles.destinations.each do |destination| %>
+<li> <a href ="/destinations/<%= destinations.id %>"><%= destinations.name %></a>
+</li>
+<% end %>
