@@ -1,1 +1,9 @@
-<p> this is the destinations page</p>
+<h1>Your previous destinations:</h1>
+
+<% @destinations.each do |desination| %>
+<li>
+<%= destination.name %> </br>
+<%= desination.distance %> </br>
+<a href="/destinations/<%=desination.id%>/edit"> Change info </a>
+<% end %>
+</li>
