@@ -1,58 +1,58 @@
-class RiderController < ApplicationController 
-       
-  
-    get '/rider/:id' do 
-        if logged_in? 
-            @rider = Rider.find(params[:id])
-        else 
-            redirect "/login"
-        end 
-    end 
+class RiderController < ApplicationController
 
-    get '/signup' do 
+
+    get '/rider/:id' do
+        if logged_in?
+            @rider = Rider.find(params[:id])
+        else
+            redirect "/login"
+        end
+    end
+
+    get '/signup' do
         if logged_in?
             redirect "/destinations"
-        else 
+        else
             erb :"riders/signup"
-        end 
-    end 
+        end
+    end
 
-    post '/signup' do 
+    post '/signup' do
        if params[:name] && params[:password]
-        
+
         # @rider = Rider.create(username: params[:username], password: params[:password])
         @rider = Rider.create(params)
         session[:rider_id] = @rider.id
-            redirect '/destinations'
-       else 
+            redirect '/motorcycles'
+       else
         redirect '/signup'
-        end 
-    end 
+        end
+    end
 
-    get '/login' do 
-        if !logged_in? 
+    get '/login' do
+        if !logged_in?
             erb :"riders/login"
-        else 
-            redirect '/destinations'
-        end 
-    end 
+        else
+            redirect '/motorcycles'
+        end
+    end
 
-    post '/login' do 
+    post '/login' do
         @rider = Rider.find_by(name: params[:name])
             if @rider && @rider.authenticate(params[:password])
                 session[:rider_id] = @rider.id
                 redirect '/destinations'
-            else 
+            else
                 redirect '/login'
-            end 
-    end 
+            end
+    end
 
-    get '/logout' do 
+    get '/logout' do
         if logged_in?
-            session.destroy 
+            session.destroy
             redirect '/login'
-        else 
+        else
             redirect '/'
-        end 
-    end 
+        end
+    end
 end

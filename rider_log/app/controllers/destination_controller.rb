@@ -23,8 +23,9 @@ class DestinationController < ApplicationController
         # flash[:message] = "Name cannot be blank!"
         redirect '/destinations/new_destination'
       else
-        @destination = current_user.destinations.build(name: params[:name], distance: params[:distance])
+        @destination = Destination.create(params)
         @destination.save
+        binding.pry
         redirect "/destinations/#{@destination.id}"
       end
     else
