@@ -18,23 +18,12 @@ class MotorcycleController < ApplicationController
     end
   end
 
-  post '/motorcycles' do
-    if logged_in?
-      if params[:name] == ""
-        # flash[:message] = "Name cannot be blank!"
-        redirect '/motorcycles/new_motorcycle'
-      else
-        @motorcycle = Motorcycle.create(name: params[:name])
-        redirect "/motorcycles/#{@motorcycle.id}"
-      end
-    else
-      redirect "/login"
-    end
-  end
+
 
   get '/motorcycles/:id' do
     if logged_in?
-      @motorcycle = Motorcycle.find_by(params[:id])
+      @motorcycle = Motorcycle.find(params[:id])
+
         erb :"/motorcycles/show_motorcycle"
     end
   end
@@ -57,7 +46,7 @@ class MotorcycleController < ApplicationController
         if params[:name] == ""
           redirect "/motorcycles/#{@motorcycle.id}/edit"
         else
-          @motorcycle.find_by(params[:id])
+          @motorcycle=Motorcycle.find_by(params[:id])
           if @motorcycle && @motorcycle.rider == current_rider
             if @motorcycle.update(name: params[:name])
           redirect :"/motorcycles/#{@motorcycle.id}"
@@ -71,6 +60,23 @@ class MotorcycleController < ApplicationController
       else
         redirect "/login"
       end
+   end
+
+   post '/motorcycles' do
+     if logged_in?
+       if params[:name] == ""
+         # flash[:message] = "Name cannot be blank!"
+         redirect '/motorcycles/new_motorcycle'
+       else
+         @motorcycle = current_rider.motorcycles.build(name: params[:name])
+         if @motorcycle.save
+          redirect "/motorcycles/#{@motorcycle.id}"
+     else
+       redirect '/motorcycles/new_motorcycle'
+     end
+   end
+       redirect "/login"
+     end
    end
 
   get '/motorcycles/:id/delete' do
