@@ -25,7 +25,6 @@ class DestinationController < ApplicationController
       else
         @destination = Destination.create(params)
         @destination.save
-        binding.pry
         redirect "/destinations/#{@destination.id}"
       end
     else

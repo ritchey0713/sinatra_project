@@ -1,7 +1,11 @@
+<h1>HELLO, <%=current_rider.name %></h1>
+</br>
+</br>
+
 <% @motorcycles.each do |motorcycle| %>
 <%= motorcycle.name %>
 </br>
-<a href ="/motorcycles/<%= motorcycle.id %>/edit">Edit </a>
+<a href ="/motorcycles/<%= motorcycle.id %>/edit" class=>Edit </a>
 <a href ="/motorcycles/<%= motorcycle.id %>"> View </a>
 
 </br>
