@@ -9,7 +9,7 @@ class RiderController < ApplicationController
     if !@rider.nil? && @rider == current_rider
       erb :'riders/show'
     else
-      redirect '/motorcycles'
+      redirect '/login'
     end
   end
 
@@ -27,6 +27,7 @@ class RiderController < ApplicationController
         # @rider = Rider.create(username: params[:username], password: params[:password])
         @rider = Rider.create(params)
         session[:rider_id] = @rider.id
+        #binding.pry
             redirect '/motorcycles'
        else
         redirect '/signup'

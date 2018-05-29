@@ -63,7 +63,7 @@ class DestinationController < ApplicationController
 
   end
 
-  delete '/destinations/:id/delete' do
+  get '/destinations/:id/delete' do
     if logged_in?
       @destination = Destination.find_by(params[:id])
       @destination.delete

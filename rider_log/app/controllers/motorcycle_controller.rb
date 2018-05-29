@@ -25,18 +25,8 @@ class MotorcycleController < ApplicationController
         redirect '/motorcycles/new_motorcycle'
       else
         @motorcycle = Motorcycle.create(name: params[:name])
-        redirect "/motorcycles"
+        redirect "/motorcycles/#{@motorcycle.id}"
       end
-    else
-      redirect "/login"
-    end
-    @motorcycle = Motorcycle.create(name: params[:name])
-  end
-
-  get '/motorcycles/:id/edit' do
-    if logged_in?
-      @motorcycle = Motorcycle.find(params[:id])
-      erb :"/motorcycles/edit_motorcycle"
     else
       redirect "/login"
     end
@@ -49,24 +39,41 @@ class MotorcycleController < ApplicationController
     end
   end
 
-  patch '/motorcycles/:id' do
-    @motorcycle = Motorcycle.find_by(params[:id])
+  get '/motorcycles/:id/edit' do
     if logged_in?
-      @rider = current_rider
-
-      if params[:name] != ""
-        @motorcycle.update(name: params[:name])
-        redirect :"/motorcycles/#{@motorcycle.id}"
-      else
-        redirect "/motorcycles/#{@motorcycle.id}/edit"
-      end
+      @motorcycle = Motorcycle.find(params[:id])
+      if @motorcycle && @motorcycle.rider == current_rider
+      erb :"/motorcycles/edit_motorcycle"
     else
+      redirect "/motorcycles"
+    end
+  else
       redirect "/login"
     end
-
   end
 
-  delete '/motorcycles/:id/delete' do
+  patch '/motorcycles/:id' do
+      if logged_in?
+        if params[:name] == ""
+          redirect "/motorcycles/#{@motorcycle.id}/edit"
+        else
+          @motorcycle.find_by(params[:id])
+          if @motorcycle && @motorcycle.rider == current_rider
+            if @motorcycle.update(name: params[:name])
+          redirect :"/motorcycles/#{@motorcycle.id}"
+            else
+          redirect "/motorcycles/#{@motorcycle.id}/edit"
+            end
+          else
+        redirect "/motorcycles"
+          end
+        end
+      else
+        redirect "/login"
+      end
+   end
+
+  get '/motorcycles/:id/delete' do
     if logged_in?
       @motorcycle = Motorcycle.find_by(params[:id])
       @motorcycle.delete

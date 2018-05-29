@@ -5,8 +5,13 @@
 <% @motorcycles.each do |motorcycle| %>
 <%= motorcycle.name %>
 </br>
+<a href ="/motorcycles/new" class=>Add </a>
 <a href ="/motorcycles/<%= motorcycle.id %>/edit" class=>Edit </a>
 <a href ="/motorcycles/<%= motorcycle.id %>"> View </a>
+<a href ="/motorcycles/<%= motorcycle.id %>/delete" class=>!Delete! </a>
 
 </br>
 <% end %>
+</br>
+</br>
+<a href ="/motorcycles/new" class='btn'>Add </a>
