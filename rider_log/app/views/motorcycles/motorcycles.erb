@@ -1,7 +1,8 @@
 <% @motorcycles.each do |motorcycle| %>
 <%= motorcycle.name %>
 </br>
-<a href ='/motorcycles/<%=motorcycle.id%>/edit'>Edit </a>
+<a href ="/motorcycles/<%= motorcycle.id %>/edit">Edit </a>
+<a href ="/motorcycles/<%= motorcycle.id %>"> View </a>
 
 </br>
 <% end %>

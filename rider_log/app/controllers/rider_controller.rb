@@ -1,17 +1,21 @@
 class RiderController < ApplicationController
 
-
-    get '/rider/:id' do
-        if logged_in?
-            @rider = Rider.find(params[:id])
-        else
-            redirect "/login"
-        end
+  get '/rider/:id' do
+    if !logged_in?
+      redirect '/login'
     end
+
+    @rider = Rider.find(params[:id])
+    if !@rider.nil? && @rider == current_rider
+      erb :'riders/show'
+    else
+      redirect '/motorcycles'
+    end
+  end
 
     get '/signup' do
         if logged_in?
-            redirect "/motorcycles/motorcycles"
+            redirect "/"
         else
             erb :"riders/signup"
         end
@@ -23,7 +27,6 @@ class RiderController < ApplicationController
         # @rider = Rider.create(username: params[:username], password: params[:password])
         @rider = Rider.create(params)
         session[:rider_id] = @rider.id
-        binding.pry
             redirect '/motorcycles'
        else
         redirect '/signup'

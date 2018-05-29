@@ -1,6 +1,7 @@
 class MotorcycleController < ApplicationController
 
   get '/motorcycles' do
+    @rider = current_rider
     if logged_in?
       @motorcycles = Motorcycle.all
       erb :'/motorcycles/motorcycles'
@@ -51,9 +52,11 @@ class MotorcycleController < ApplicationController
   patch '/motorcycles/:id' do
     @motorcycle = Motorcycle.find_by(params[:id])
     if logged_in?
-      if !params[:name] == ""
+      @rider = current_rider
+
+      if params[:name] != ""
         @motorcycle.update(name: params[:name])
-        erb :"/motorcycles/#{@motorcycle.id}"
+        redirect :"/motorcycles/#{@motorcycle.id}"
       else
         redirect "/motorcycles/#{@motorcycle.id}/edit"
       end

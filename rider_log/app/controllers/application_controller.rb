@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
 
    helpers do
     def current_rider
-      Rider.find(session[:rider_id])
+      @current_rider ||= Rider.find_by(id: session[:rider_id]) if session[:rider_id]
     end
 
     def logged_in?
