@@ -1,10 +1,14 @@
 <h1>Your previous destinations:</h1>
+The distance is set to miles!
+</br>
+</br>
 
 <% @destinations.each do |destination| %>
 <li>
 <%= destination.name %> </br>
 <%= destination.distance %> </br>
 <a href="/destinations/<%=destination.id%>/edit"> Change info </a>
+<a href ="/destinations/<%= destination.id %>/delete" class=>!Delete! </a>
 </br>
 
 <% end %>

@@ -25,7 +25,7 @@ class DestinationController < ApplicationController
       else
         @destination = Destination.create(params)
         @destination.save
-        redirect "/destinations/#{@destination.id}"
+        redirect "/destinations"
       end
     else
       redirect "/login"
@@ -40,6 +40,8 @@ class DestinationController < ApplicationController
       redirect "/login"
     end
   end
+
+
 
   get '/destinations/:id/edit' do
     if logged_in?
