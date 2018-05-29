@@ -1,12 +1,14 @@
 <h1>Your previous destinations:</h1>
 
-<% @destinations.each do |desination| %>
+<% @destinations.each do |destination| %>
 <li>
 <%= destination.name %> </br>
-<%= desination.distance %> </br>
-<a href="/destinations/<%=desination.id%>/edit"> Change info </a>
+<%= destination.distance %> </br>
+<a href="/destinations/<%=destination.id%>/edit"> Change info </a>
+</br>
 
 <% end %>
+</br>
 </li>
 <a href="/" class="btn"> Go back </a>
 <a href="/destinations/new" class="btn">Plot a new destination </a>

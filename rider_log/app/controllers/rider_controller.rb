@@ -11,7 +11,7 @@ class RiderController < ApplicationController
 
     get '/signup' do
         if logged_in?
-            redirect "/destinations"
+            redirect "/motorcycles/motorcycles"
         else
             erb :"riders/signup"
         end
@@ -19,10 +19,11 @@ class RiderController < ApplicationController
 
     post '/signup' do
        if params[:name] && params[:password]
-
+          flash[:message] = " Thanks for signing up!"
         # @rider = Rider.create(username: params[:username], password: params[:password])
         @rider = Rider.create(params)
         session[:rider_id] = @rider.id
+        binding.pry
             redirect '/motorcycles'
        else
         redirect '/signup'
@@ -39,9 +40,10 @@ class RiderController < ApplicationController
 
     post '/login' do
         @rider = Rider.find_by(name: params[:name])
+
             if @rider && @rider.authenticate(params[:password])
                 session[:rider_id] = @rider.id
-                redirect '/destinations'
+                redirect '/motorcycles'
             else
                 redirect '/login'
             end

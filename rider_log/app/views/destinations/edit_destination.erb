@@ -1,9 +1,13 @@
-<h1> Lets edit <%= @destination.name %>
+<h1> Lets edit, <%= @destination.name %>
+</br>
+</br>
 
-  <form action='/destinations/<%=@desination.id%>' method="POST">
+  <form action='/destinations/<%=@destination.id%>' method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Destination:</label>
       <input type="text" name="name"> </br>
-      <input type="text" name="distance"
-      <input type="submit" value="Edit destination">
+      <label> Distance</label>
+      <input type="text" name="distance">
+    </br>
+      <input type="submit" class="btn" value="Edit destination">
     </form>

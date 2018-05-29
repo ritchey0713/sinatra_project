@@ -1,6 +1,6 @@
 <h1> Lets edit <%= @motorcycle.name %>
 
-  <form action='/motorcycles/<%=@motorcycle.id%>' method="POST">
+  <form action='/motorcycles/<%= @motorcycle.id %>' method="POST">
     <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Motorcycle:</label>
       <input type="text" name="name"> </br>

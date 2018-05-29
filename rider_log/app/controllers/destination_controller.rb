@@ -45,19 +45,18 @@ class DestinationController < ApplicationController
   get '/destinations/:id/edit' do
     if logged_in?
       @destination = Destination.find_by(params[:id])
-      if @destination && @destination.rider == current_rider
-        erb :"/destination/edit_destination"
-      end
+        erb :"/destinations/edit_destination"
     end
   end
 
   patch '/destinations/:id' do
     @destination = Destination.find_by(params[:id])
     if logged_in?
-      if !params[:name] =="" && !params[:distance] ==""
+      if params[:name] != "" && params[:distance] != ""
         @destination.update(name: params[:name], distance: params[:distance])
+        redirect :"/destinations/#{@destination.id}"
       else
-        redirect "/destinations/#{@desination.id}/edit"
+        redirect "/destinations/#{@destination.id}/edit"
       end
     else
       redirect "/login"
