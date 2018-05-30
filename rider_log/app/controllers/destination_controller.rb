@@ -19,13 +19,11 @@ class DestinationController < ApplicationController
 
   post '/destinations' do
     if logged_in?
-      if params[:name] == ""
-        # flash[:message] = "Name cannot be blank!"
-        redirect '/destinations/new_destination'
+       @destination = Destination.new(params)
+      if @destination.save
+        redirect "/destinations/show_destination"
       else
-        @destination = Destination.create(params)
-        binding.pry
-        redirect "/destinations"
+        erb :"/destinations/new_destination"
       end
     else
       redirect "/login"
@@ -35,7 +33,6 @@ class DestinationController < ApplicationController
   get '/destinations/:id' do
     if logged_in?
       @destination = Destination.find_by(params[:id])
-      binding.pry
       erb :"/destinations/show_destination"
     else
       redirect "/login"

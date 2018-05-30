@@ -1,3 +1,4 @@
-class Destination < ActiveRecord::Base 
+class Destination < ActiveRecord::Base
   belongs_to :motorcycle
-end 
+  validates :name, presence: true
+end
