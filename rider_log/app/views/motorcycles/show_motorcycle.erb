@@ -5,7 +5,19 @@
 <% @motorcycle.destinations.each do |destination| %>
 <li>
 <a href= "/destinations/<%= destination.id %>"><%= destination.name %></a>
+
+
 <% end %>
+
+<form action="/destinations" method="POST">
+  <label> Destination: </label>
+  <input type="text" name="name"> </br>
+  <label> Distance: </label>
+  <input type="text" name="distance"> </br>
+  <input type="hidden" name="motorcycle_id" value=<%=@motorcycle.id%>>
+  <input type="submit" value="Create a new destination" class="btn">
+</form>
+
 </br>
 </br>
 </br>

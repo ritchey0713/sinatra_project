@@ -24,7 +24,7 @@ class DestinationController < ApplicationController
         redirect '/destinations/new_destination'
       else
         @destination = Destination.create(params)
-        @destination.save
+        binding.pry
         redirect "/destinations"
       end
     else
@@ -35,6 +35,7 @@ class DestinationController < ApplicationController
   get '/destinations/:id' do
     if logged_in?
       @destination = Destination.find_by(params[:id])
+      binding.pry
       erb :"/destinations/show_destination"
     else
       redirect "/login"
